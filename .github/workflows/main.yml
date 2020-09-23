@@ -1,0 +1,37 @@
+name: GitHub Actions Build and Deploy linux-command
+on:
+  push:
+  schedule:
+    - cron: '0 24 * * *'
+jobs:
+  bot:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    
+    - name: checkout actions
+    - uses: actions/checkout@v1
+    
+    - name: Checkout Code
+      run: |
+        git clone https://github.com/jaywcjlove/linux-command.git tmp
+        cd tmp
+        npm install
+        npm run build
+        cp -arf .deploy/* ../
+        echo linux.tlhub.cn ../CNAME
+
+    - name: commit
+      run: |
+        git config --global user.email 15563836030@163.com
+        git config --global user.name athlonreg
+        git add .
+        git commit -m "update" -a
+        
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
