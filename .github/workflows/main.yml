@@ -2,7 +2,7 @@ name: GitHub Actions Build and Deploy linux-command
 on:
   push:
   schedule:
-    - cron: '0 24 * * *'
+    - cron: '30 * * * *'
 jobs:
   bot:
     runs-on: ubuntu-latest
