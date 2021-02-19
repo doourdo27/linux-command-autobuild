@@ -26,12 +26,12 @@ jobs:
 
     - name: commit
       run: |
-        git config --global user.email 15563836030@163.com
-        git config --global user.name athlonreg
+        git config --global user.email doourdo27@163.com
+        git config --global user.name doourdo
         git add .
         git commit -m "update" -a
         
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.TOKEN }}
